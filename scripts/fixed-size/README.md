@@ -39,3 +39,33 @@ ___
 
 # Broken models - 23.12.2024
 The resulting models seem to be broken. I'm investigating other approaches.
+
+
+Generating the fixed size ONNX models I can't find any way to set the IR version. It's always 0. This means ONNXSIM can't run on the models :(
+I beleive this is due to some issue in the framework (onnxruntime or optimum) which is doing the processing
+```
+ -- Warning: onnx version converter is unable to parse input model. (The IR version of the ONNX model may be too old.) 
+ .ValidationError: The model does not have an ir_version set properly.
+```
+
+
+# Preprocessing and optimising
+
+**onnxruntime.quantization.preprocess**  
+the preprocessor for quantization fails with:  
+`[ONNXRuntimeError] : 7 : INVALID_PROTOBUF : Load model from /tmp/pre.quant.uwwo0rkn/symbolic_shape_inferred.onnx failed:Protobuf parsing failed`  
+Maybe you'll have a better setup, you can try using this command:
+```
+python -m onnxruntime.quantization.preprocess --input fixedsize/unet_torch32/export.onnx --output fixedsize/unet_prepp/model.onnx \
+--save_as_external_data --all_tensors_to_one_file --external_data_location fixedsize/unet_prepp/data
+```
+**onnxruntime.transformers.optimizer**  
+You can also try the onnxruntime optimizer, but for my downstream tasks these optimized models break my pipelines.
+```
+python -m onnxruntime.transformers.optimizer \
+    --input fixedsize/unet_torch32/export.onnx \
+    --output fixedsize/unet_03/model.onnx \
+    --model_type unet \
+    --use_external_data_format \
+    --opt_level 3
+```
