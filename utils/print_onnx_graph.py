@@ -22,9 +22,15 @@ def save_model_details(model_file, output_file):
 # Define model files and output directories
 model_data = [
 #    {"model_file": "fixedsize/unet/model.onnx", "filename": "graph_original_unet.txt"},
-#    {"model_file": "fixedsize/unet_torch32/model.onnx", "filename": "graph_fixed_size_unet.txt"},
-    {"model_file": "sd_q8_2/unet.onnx", "filename": "sd_q8_2/unet.onnxbackbone.txt"},
- #   {"model_file": 'fixedsize/unet_QFQDQ_PC1_CMMMX_ATU8_WTS8/model.onnx', "filename": "graph_fixed_size_static_quant_unet_ig.txt"},
+#    {"model_file": "fixedsize/unet_32/model.onnx", "filename": "graph_fixed_size_unet.txt"},
+#   {"model_file": "torchpreproc/unet_preprocessed.onnx", "filename": "graph_unet_torch_prep.txt"},
+#    {"model_file": "torchexport/unet_fixed_batch_2_torch.onnx", "filename": "graph_unet_torch_expo.txt"},
+#    {"model_file": "fixedsize/unet_QFQDQ_PC1_CMMMX_ATU8_WTS8/model.onnx", "filename": "graph_unet_QFQDQ_PC1_CMMMX_ATU8_WTS8.txt"},
+#    {"model_file": "fixedsize/unet_QFQDQ_PC1_CMMMX_ATU8_WTS8/model.onnx", "filename": "graph_unet_QFQDQ_PC1_CMMMX_ATU8_WTS8.txt"},
+    {"model_file": "fixedsize/unet_dynamic_uint/model.onnx", "filename": "graph_unet_dynamic_uint.txt"},
+    {"model_file": "fixedsize/unet_dynamic_uint_sim/model.onnx", "filename": "graph_unet_dynamic_uint_sim.txt"},    
+#    {"model_file": "sd_q8_2/unet.onnx", "filename": "sd_q8_2/unet.onnxbackbone.txt"},
+#   {"model_file": 'fixedsize/unet_QFQDQ_PC1_CMMMX_ATU8_WTS8/model.onnx', "filename": "graph_fixed_size_static_quant_unet_ig.txt"},
 ]
 
 # Process each model

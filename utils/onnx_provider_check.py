@@ -3,7 +3,8 @@ import onnxruntime as ort
 import numpy as np
 import sys
 import os
-
+# check ls /usr/local/cuda/include/ for cudnn
+# sudo apt install cudnn9-cuda-12-4=9.1.1.17-1 libcudnn9-dev-cuda-12=9.1.1.17-1 libcudnn9-static-cuda-12=9.1.1.17-1 libcudnn9-cuda-12=9.1.1.17-1
 def check_cuda_availability():
     """Checks if CUDA is available and configured correctly for ONNX Runtime."""
 
